@@ -1,0 +1,31 @@
+package com.saga.model.service;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.saga.model.dao.HumanResourceDao;
+import com.saga.model.dto.HumanResource;
+@Service("humanResourceService")
+public class HumanResourceServiceImpl implements HumanResourceService {
+	@Autowired
+	HumanResourceDao humanResourceDao;
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void addMemeber(HumanResource hr) {
+		humanResourceDao.addMember(hr);
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<HumanResource> findAll() {
+		return humanResourceDao.findAll();
+	}
+
+}
