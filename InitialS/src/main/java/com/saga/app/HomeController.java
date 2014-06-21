@@ -50,11 +50,12 @@ public class HomeController extends ApplicationContextController {
 	@RequestMapping(value = WebServletPath.HR_SAVE , method = RequestMethod.POST)
 	public ModelAndView saveInfo(@ModelAttribute HumanResource hr){
 		ModelAndView mnv = new ModelAndView();
+		
 		humanResourceService.addMemeber(hr);
 		
 		logger.info("{}" , hr);
 		
-		mnv.addObject("hr",hr);	
+		mnv.addObject(HumanResourceDTO,hr);	
 		mnv.setViewName("result/result");
 		return mnv;
 	}
@@ -62,9 +63,12 @@ public class HomeController extends ApplicationContextController {
 	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
 	public ModelAndView viewById(@PathVariable("id") Integer id){
 		ModelAndView mnv = new ModelAndView();
+		
 		HumanResource hr = humanResourceService.findById(id);
+		
 		logger.info("{}" , hr);
-		mnv.addObject("result",hr);
+		 
+		mnv.addObject(HumanResourceDTO,hr);
 		mnv.setViewName("result/viewById");
 		return mnv;
 	}
@@ -74,10 +78,10 @@ public class HomeController extends ApplicationContextController {
 		ModelAndView mnv = new ModelAndView();
 		
 		logger.info("{}" , hr);
+		
 		humanResourceService.updateMember(hr);
 		
-		
-		mnv.addObject("hr",hr);
+		mnv.addObject(HumanResourceDTO,hr);
 		mnv.setViewName("redirect:/");
 		return mnv;
 	}
