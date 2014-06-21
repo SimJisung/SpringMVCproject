@@ -28,4 +28,16 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 		return humanResourceDao.findAll();
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void updateMember(HumanResource hr) {
+		humanResourceDao.updateMember(hr);
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public HumanResource findById(Integer id) {
+		return humanResourceDao.findById(id);
+	}
+	
 }

@@ -3,7 +3,9 @@ package com.saga.model.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.saga.model.dto.HumanResource;
@@ -13,7 +15,7 @@ public class HumanResourceDaoImpl extends HibernateSessionFactoryImpl implements
 
 	public void addMember(HumanResource hr){
 		Session session = sessionFactory.getCurrentSession();
-		session.save(hr);
+		session.saveOrUpdate(hr);
 	}
 
 	@Override
@@ -21,5 +23,22 @@ public class HumanResourceDaoImpl extends HibernateSessionFactoryImpl implements
 		Session session = sessionFactory.getCurrentSession();
 		List<HumanResource> list = session.createCriteria(HumanResource.class).list();
 		return list;
+	}
+
+	@Override
+	public void updateMember(HumanResource hr) {
+		Session session = sessionFactory.getCurrentSession();
+		session.update(hr);
+	}
+
+	@Override
+	public HumanResource findById(Integer id) {
+		Session session = sessionFactory.getCurrentSession();	
+		Criteria criteria = session.createCriteria(HumanResource.class);
+		criteria.add(Restrictions.eq("id", id));
+		HumanResource hr = (HumanResource) criteria.uniqueResult();
+		//HumanResource hr = (HumanResource) session.load(HumanResource.class,id);
+		//System.out.println("DAO : "+hr);
+		return hr;
 	}
 }

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -51,10 +52,33 @@ public class HomeController extends ApplicationContextController {
 		ModelAndView mnv = new ModelAndView();
 		humanResourceService.addMemeber(hr);
 		
-		logger.debug("RESULT : {}" , hr);
+		logger.info("{}" , hr);
 		
 		mnv.addObject("hr",hr);	
 		mnv.setViewName("result/result");
+		return mnv;
+	}
+	
+	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+	public ModelAndView viewById(@PathVariable("id") Integer id){
+		ModelAndView mnv = new ModelAndView();
+		HumanResource hr = humanResourceService.findById(id);
+		logger.info("{}" , hr);
+		mnv.addObject("result",hr);
+		mnv.setViewName("result/viewById");
+		return mnv;
+	}
+	
+	@RequestMapping(value = WebServletPath.HR_UPDATE , method = RequestMethod.POST)
+	public ModelAndView updateInfo(@ModelAttribute HumanResource hr){
+		ModelAndView mnv = new ModelAndView();
+		
+		logger.info("{}" , hr);
+		humanResourceService.updateMember(hr);
+		
+		
+		mnv.addObject("hr",hr);
+		mnv.setViewName("redirect:/");
 		return mnv;
 	}
 	
@@ -69,4 +93,6 @@ public class HomeController extends ApplicationContextController {
 		
 		return mnv;	
 	}
+	
+	
 }
