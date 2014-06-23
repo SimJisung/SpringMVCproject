@@ -8,6 +8,7 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.test.web.ModelAndViewAssert;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +28,7 @@ public class HomeController extends ApplicationContextController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	private static final String HumanResourceDTO = "hr";
-
+ 
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -96,6 +97,17 @@ public class HomeController extends ApplicationContextController {
 		mnv.setViewName("result/allview");
 		
 		return mnv;	
+	}
+	
+	@RequestMapping(value = WebServletPath.HR_DELETE , method = RequestMethod.POST)
+	public ModelAndView deleteById(@ModelAttribute HumanResource hr){
+		ModelAndView mnv = new ModelAndView();
+		
+		humanResourceService.deleteMember(hr);
+		
+		mnv.addObject(HumanResourceDTO,hr);
+		mnv.setViewName("redirect:/");
+		return mnv; 
 	}
 	
 	

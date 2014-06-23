@@ -10,6 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import com.saga.model.dto.HumanResource;
 
+/**
+ * 
+ * @author simjisung
+ *
+ *@Repository - 데이터 입력에 문제가 발생할 경우, 이 애노테이션을 쓰면 자동적으로 DataAccessException 을 떨어뜨리게 된다. 
+ */
 @Repository("humanResourceDao")
 public class HumanResourceDaoImpl extends HibernateSessionFactoryImpl implements HumanResourceDao{
 
@@ -40,5 +46,11 @@ public class HumanResourceDaoImpl extends HibernateSessionFactoryImpl implements
 		//HumanResource hr = (HumanResource) session.load(HumanResource.class,id);
 		//System.out.println("DAO : "+hr);
 		return hr;
+	}
+
+	@Override
+	public void deleteMember(HumanResource hr) {
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(hr);
 	}
 }

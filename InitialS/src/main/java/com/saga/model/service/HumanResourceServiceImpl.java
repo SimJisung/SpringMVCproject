@@ -13,6 +13,7 @@ import com.saga.model.dao.HumanResourceDao;
 import com.saga.model.dto.HumanResource;
 @Service("humanResourceService")
 public class HumanResourceServiceImpl implements HumanResourceService {
+	
 	@Autowired
 	HumanResourceDao humanResourceDao;
 	
@@ -23,7 +24,7 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = true)
 	public List<HumanResource> findAll() {
 		return humanResourceDao.findAll();
 	}
@@ -35,9 +36,17 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = true)
 	public HumanResource findById(Integer id) {
 		return humanResourceDao.findById(id);
 	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void deleteMember(HumanResource hr) {
+		humanResourceDao.deleteMember(hr);
+	}
+	
+	
 	
 }

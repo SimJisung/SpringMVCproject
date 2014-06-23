@@ -9,4 +9,5 @@ public interface HumanResourceDao extends HibernateSessionFactory{
 	public List<HumanResource> findAll();
 	public void updateMember(HumanResource hr);
 	public HumanResource findById(Integer id);
+	public void deleteMember(HumanResource hr);
 }
