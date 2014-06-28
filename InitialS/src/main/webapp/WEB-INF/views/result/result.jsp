@@ -18,5 +18,9 @@
 	<br/>
 	연봉 : ${hr.salary}
 	<br/>
+	
+	<a href = "${pageContext.request.contextPath}/hr/view.do">인사정보 바로가기 </a>   
+	
+	
 </body>
 </html>

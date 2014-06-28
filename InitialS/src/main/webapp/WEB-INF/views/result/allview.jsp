@@ -33,7 +33,7 @@
 		<c:forEach var = "result" items="${LIST}">
 			<tr>
 				<td class = "goEvent" id = "resultId">
-					<a href = "${pageContext.request.contextPath}/view/${result.id}">
+					<a href = "${pageContext.request.contextPath}/hr/view/${result.id}">
 						${result.id}
 					</a>
 				</td>

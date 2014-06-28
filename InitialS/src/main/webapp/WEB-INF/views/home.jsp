@@ -12,15 +12,7 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 
-<form:form commandName="hr" method="POST" action="${pageContext.request.contextPath}/save.do">
-	first name : <form:input path="firstName"/>
-	last name : <form:input path="lastName"/>
-	salary : <form:input path="salary"/>
-	
-	<input type = "submit" value = "입력" />
-</form:form>
-
-<a href="${pageContext.request.contextPath}/view.do">모든 리스트 보기</a>   
+<a href = "${pageContext.request.contextPath}/hr/view.do">인사정보 바로가기 </a>   
 
 </body>
 </html>
