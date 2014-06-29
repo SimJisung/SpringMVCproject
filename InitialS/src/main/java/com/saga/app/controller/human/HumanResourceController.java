@@ -25,6 +25,15 @@ public class HumanResourceController {
 	private static final String HumanResourceDTO = "hr";
 	@Autowired HumanResourceService humanResourceService; 
 	
+	@RequestMapping(value = WebServletPath.HR_SAVE , method = RequestMethod.GET)
+	public ModelAndView inputInfo(@ModelAttribute HumanResource hr){
+		ModelAndView mnv = new ModelAndView();
+		mnv.addObject(HumanResourceDTO,hr);	
+		mnv.setViewName("result/input");
+		return mnv;
+	}
+	
+	
 	@RequestMapping(value = WebServletPath.HR_SAVE , method = RequestMethod.POST)
 	public ModelAndView saveInfo(@ModelAttribute HumanResource hr){
 		ModelAndView mnv = new ModelAndView();

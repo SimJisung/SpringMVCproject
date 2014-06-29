@@ -3,17 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<title>내역 리스트 </title>
-<script>
-	
-</script>
-</head>
-<body>
 	<table>
 		<tr>
 			<td>
@@ -48,9 +37,6 @@
 				</td>
 			</tr>
 		</c:forEach>
+	</table>	
 		
-		
-		
-	</table>
-</body>
-</html>
+	

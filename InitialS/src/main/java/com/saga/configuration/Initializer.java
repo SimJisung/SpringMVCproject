@@ -44,8 +44,9 @@ public class Initializer implements WebApplicationInitializer {
 		Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");
+		
 	}
-
+	
 	private void setCharacterUTF8Encoding(ServletContext servletContext) {
 		FilterRegistration.Dynamic filter = servletContext.addFilter("CHARACTER_ENCODING_FILTER", CharacterEncodingFilter.class);
         filter.setInitParameter("encoding", "UTF-8");
