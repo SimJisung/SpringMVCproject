@@ -84,7 +84,8 @@ public class RootContext {
 	public LocalSessionFactoryBean sessionFactory(){
 		LocalSessionFactoryBean localSessionFactory = new LocalSessionFactoryBean();
 		localSessionFactory.setDataSource(dataSource());
-		localSessionFactory.setAnnotatedClasses(HumanResource.class);
+		//localSessionFactory.setAnnotatedClasses(HumanResource.class);
+		localSessionFactory.setPackagesToScan(new String[] {"com.saga.model.dto"});
 	
 		Properties hibernateProperties = hibernateProperties();
 		

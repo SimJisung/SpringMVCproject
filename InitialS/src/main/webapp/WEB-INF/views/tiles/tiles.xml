@@ -3,7 +3,8 @@
         "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
 <tiles-definitions>   
- 
+ 	
+ 	<!-- mapping 시켜주기 위한 준비 작업  -->
 	<definition name="tilesbase"  
 	    template="/WEB-INF/views/tiles/human/default.jsp">   
 	    <put-attribute name="title" value="" />        
@@ -13,7 +14,10 @@
 	    <put-attribute name="footer" value="/WEB-INF/views/tiles/human/footer.jsp" />   
 	</definition>      
 	 
-	 <!-- 컨트롤러에서 리턴해 주는 뷰이름,본예제는 hello  -->
+	 <!-- 
+	 definition name 은 controller 에서 setViewName을 근거로 naming 을 정의 한다. 
+	 extends 는 해당 이름으로 layout 설정을 가져와서 mapping 시켜 준다. 
+	 -->
 	<definition name="home" extends="tilesbase">    
 	    <put-attribute name="title" value="Hello, Tiles World!" />     
 	    <put-attribute name="body" value="/WEB-INF/views/home.jsp" />    
